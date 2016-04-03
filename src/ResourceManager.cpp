@@ -29,8 +29,8 @@ void ae::ResourceManager::run()
             if (event.type == sf::Event::Closed)
                 mInstance.mWindow->close();
 	    for(auto it = mInstance.mEvent.begin();it!=mInstance.mEvent.end();it++)
-	      if((*it).first == event.type)
-	       (*it).second(event);
+	      if((*it).first == event.type && (*it).second(event))
+	       break;
         }
         mInstance.mWindow->clear();
 	for(auto it = mInstance.mDrawables.begin();it!=mInstance.mDrawables.end();it++)

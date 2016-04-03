@@ -15,7 +15,7 @@ namespace ae
   class ResourceManager
   {
   public:
-    typedef std::function<void(sf::Event&)> EventHandler;
+    typedef std::function<bool(sf::Event&)> EventHandler;
     ResourceManager();
     ~ResourceManager();
     
