@@ -45,9 +45,15 @@ namespace ae
     std::shared_ptr<Drawable> drawable = std::dynamic_pointer_cast<Drawable>(ptr);
     std::shared_ptr<ClockListener> clockListener = std::dynamic_pointer_cast<ClockListener>(ptr);
     if(drawable)
+    {
+      PRINT("Ok Drawable added");
       mInstance.mDrawables.push_back(drawable);
+    }
     if(clockListener)
+    {
+      PRINT("Ok ClockListener added");
       mInstance.mClockListener.push_back(clockListener);
+    }
     return ptr;
   }
   

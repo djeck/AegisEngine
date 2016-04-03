@@ -5,11 +5,11 @@ ae::ResourceManager ae::ResourceManager::mInstance;
 ae::ResourceManager::ResourceManager()
 {
   mWindow = new sf::RenderWindow(sf::VideoMode(200, 200), "Aegis Engine");
-  ae::Out::println("Ok ae::ResourceManager::ResourceManager is running");
+  PRINT("Ok is running");
 }
 ae::ResourceManager::~ResourceManager()
 {
-  ae::Out::println("Ok ae::ResourceManager::~ResourceManager free resource");
+  PRINT("Ok free resource");
   for(auto it = mDrawables.begin();it!=mDrawables.end();it++)
     (*it).reset();
   mDrawables.clear();

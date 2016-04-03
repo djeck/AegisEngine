@@ -14,9 +14,11 @@ namespace ae
     ~Button();
     sf::Sprite& getSprite();
   private:
-    sf::RenderTexture mRenderTexture;
+    sf::Text mText;
     sf::CircleShape mShape;
+    
     sf::Sprite *mSprite;
+    sf::RenderTexture mRenderTexture; 
   };
 }
 #endif // BUTTON_HPP
