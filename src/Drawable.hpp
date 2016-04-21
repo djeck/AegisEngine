@@ -6,12 +6,12 @@
 
 namespace ae
 {
-  class Drawable : public Entity
-  {
-  public:
+class Drawable : public Entity
+{
+public:
     static const uint64_t type = "Drawable"_type;
     virtual sf::Sprite& getSprite() = 0;
-  protected:
-  };
+protected:
+};
 }
 #endif // DRAWABLE_HPP

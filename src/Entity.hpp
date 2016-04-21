@@ -5,11 +5,11 @@
 
 namespace ae
 {
-  class Entity
-  {
-  public:
+class Entity
+{
+public:
     static const uint64_t type = "Entity"_type;
-  };
+};
 }
 
 #endif // ENTITY_HPP
