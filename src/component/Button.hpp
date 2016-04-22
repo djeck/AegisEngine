@@ -1,9 +1,9 @@
 #ifndef BUTTON_HPP
 #define BUTTON_HPP
 
-#include "ResourceManager.hpp"
-#include "Drawable.hpp"
-#include "Types.hpp"
+#include "../ResourceManager.hpp"
+#include "../Drawable.hpp"
+#include "../Types.hpp"
 
 namespace ae
 {

@@ -1,6 +1,6 @@
 #include "Button.hpp"
 
-#include "Log.hpp"
+#include "../Log.hpp"
 
 int ae::Button::id=0;
 

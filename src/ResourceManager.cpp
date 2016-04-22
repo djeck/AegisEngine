@@ -9,7 +9,7 @@ ae::ResourceManager::ResourceManager()
     {
         PRINT("Error can't open font file");
     }
-    PRINT("Ok is running");
+    PRINT("Ok is running ");
 }
 ae::ResourceManager::~ResourceManager()
 {
