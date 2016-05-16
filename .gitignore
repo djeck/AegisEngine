@@ -29,3 +29,15 @@
 
 build/*
 *.kdev4
+/src/Button.cpp.orig
+/src/Button.hpp.orig
+/src/ClockListener.hpp.orig
+/src/Drawable.hpp.orig
+/src/Entity.hpp.orig
+/src/Log.cpp.orig
+/src/Log.hpp.orig
+/src/ResourceManager.cpp.orig
+/src/ResourceManager.hpp.orig
+/src/Types.hpp.orig
+/src/test/main.cpp.orig
+/style.sh

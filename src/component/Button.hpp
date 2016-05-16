@@ -15,7 +15,12 @@ public:
     static const uint64_t type = "Button"_type;
     Button();
     ~Button();
-    sf::Sprite& getSprite();
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
+    {
+        states.transform *= getTransform();
+        target.draw(mShape, states);
+	target.draw(mText, states);
+    }
     void setCallBack(Callback callback);
 private:
     sf::Text mText;

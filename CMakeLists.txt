@@ -6,6 +6,7 @@ file(
         GLOB_RECURSE
         source_files
         src/*
+        src/component/*
 )
 
 add_executable(aegisengine ${source_files})

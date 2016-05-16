@@ -14,13 +14,15 @@ namespace ae
 		
 		Debug();
 		~Debug();
-		sf::Sprite& getSprite();
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
+		{
+		    states.transform *= getTransform();
+		    target.draw(mText, states);
+		}
 	private:
+	  void cmdHandler();
 		sf::Text mText;
 		std::string mCmd;
-		
-		sf::Sprite *mSprite;
-		sf::RenderTexture mRenderTexture;
 	};
 }
 #endif // DEBUG_HPP

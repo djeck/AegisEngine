@@ -41,10 +41,6 @@ ae::Button::Button()
         return false;
     });
 }
-sf::Sprite& ae::Button::getSprite()
-{
-    return *mSprite;
-}
 ae::Button::~Button()
 {
     delete mSprite;

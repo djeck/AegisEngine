@@ -16,7 +16,13 @@ namespace ae
 		bool collision(int xmouse,int ymouse);
 		Neuron();
 		~Neuron();
-		sf::Sprite& getSprite();
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
+		{
+		  states.transform *= getTransform();
+
+		  target.draw(mRect,states);
+		  target.draw(mText,states);
+		}
 		void setCallBack(Callback callback);
 	private:
 		sf::Text mText;
@@ -24,9 +30,6 @@ namespace ae
 		Callback mCallback;
 		int mId;
 		static int id;
-		
-		sf::Sprite *mSprite;
-		sf::RenderTexture mRenderTexture;
 	};
 }
 #endif // NEURON_HPP

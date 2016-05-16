@@ -3,14 +3,15 @@
 
 #include <SFML/Graphics.hpp>
 #include "Entity.hpp"
+#include "Log.hpp"
 
 namespace ae
 {
-class Drawable : public Entity
+class Drawable : public Entity, public sf::Drawable, public sf::Transformable
 {
 public:
     static const uint64_t type = "Drawable"_type;
-    virtual sf::Sprite& getSprite() = 0;
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states){};
 protected:
 };
 }

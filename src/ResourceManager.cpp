@@ -4,8 +4,8 @@ ae::ResourceManager ae::ResourceManager::mInstance;
 
 ae::ResourceManager::ResourceManager()
 {
-    mWindow = new sf::RenderWindow(sf::VideoMode(800, 600, 32), "800 x 600 Screen", !sf::Style::Resize || sf::Style::Close );
-    if (!mFont.loadFromFile("arial.ttf"))
+    mWindow = new sf::RenderWindow(sf::VideoMode(800, 600, 32), "AegiEngine", !sf::Style::Resize || sf::Style::Close );
+    if (!mFont.loadFromFile("./media/arial.ttf"))
     {
         PRINT("Error can't open font file");
     }
@@ -45,7 +45,7 @@ void ae::ResourceManager::run()
         }
         mInstance.mWindow->clear();
         for(auto it = mInstance.mDrawables.begin(); it!=mInstance.mDrawables.end(); it++)
-            mInstance.mWindow->draw((*it)->getSprite());
+            mInstance.mWindow->draw(*(*it));
         mInstance.mWindow->display();
     }
 }
