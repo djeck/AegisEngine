@@ -15,24 +15,15 @@ class Out
 {
 public:
     template<class... Args>
-    static void printInfo(const char* fcn,const char* file,int line,const char* format, Args&&... args);
+    static void printInfo(const char* fcn,const char* file,int line,const std::string & format, Args&&... args);
 private:
-    static bool contain(const char* ref,const char* format);
+	static bool contain(const std::string & ref,const std::string & format);
 };
+
 template<class... Args>
-void Out::printInfo(const char* fcn,const char* file,int line,const char* format, Args&&... args)
+void Out::printInfo(const char* fcn,const char* file,int line,const std::string & format, Args&&... args)
 {
-    if(strlen(format)-14 > 250)
-    {
-#pragma GCC diagnostic ignored "-Wformat-security"
-        printf(format, std::forward<Args>(args)...);
-        printf("\n");
-        return;
-    }
-    char str[250];
-    str[0]='\0';
-    strcat(str,"%s, %s, %d:\t\t");
-    strcat(str,format);
+    std::string str = "%s, %s, %d:\t\t"+format;
 #ifdef __linux__
     if(contain(format,"Error"))
         printf("\033[31m");
@@ -42,7 +33,7 @@ void Out::printInfo(const char* fcn,const char* file,int line,const char* format
         printf("\033[33m");
 #endif
 #pragma GCC diagnostic ignored "-Wformat-security"
-    printf(str, file, fcn, line, std::forward<Args>(args)...);
+    printf(str.c_str(), file, fcn, line, std::forward<Args>(args)...);
     printf("\033[m\n");
 }
 }
