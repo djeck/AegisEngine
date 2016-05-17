@@ -1,11 +1,11 @@
 #include "Log.hpp"
 
-bool ae::Out::contain(const char* ref,const char* format)
+bool ae::Out::contain(const std::string & ref,const std::string & format)
 {
-    if(strlen(ref)<strlen(format))
+    if(ref.length()<format.length())
         return false;
-    for(size_t i=0; i<strlen(format); i++)
-        if(ref[i]!=format[i])
+    for(size_t i=0; i<format.length(); i++)
+        if(ref.at(i)!=format.at(i))
             return false;
     return true;
 }
