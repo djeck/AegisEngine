@@ -7,6 +7,7 @@ file(
         source_files
         src/*
         src/component/*
+        src/test/
 )
 
 add_executable(aegisengine ${source_files})
