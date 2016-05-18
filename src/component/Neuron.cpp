@@ -17,7 +17,7 @@ ae::Neuron::Neuron()
 	mId=id;
 	id++;
 	ss<<"Neuron "<<id<<"\n test";
-	mText.setFont(ae::ResourceManager::getFont());
+	mText.setFont(ae::Application::getFont());
 	mText.setString(ss.str().c_str());
 	mText.setCharacterSize(14);
 	mText.setColor(sf::Color::Red);
@@ -25,7 +25,7 @@ ae::Neuron::Neuron()
 	mRect.setSize(sf::Vector2f(50.f,50.f));
 	mRect.setPosition(50.f,50.f);
 
-	ae::ResourceManager::addEventHandler(sf::Event::MouseButtonPressed, [this](sf::Event& event)
+	ae::Application::addEventHandler(sf::Event::MouseButtonPressed, [this](sf::Event& event)
 	{
 		if (event.mouseButton.button == sf::Mouse::Left)
 		{

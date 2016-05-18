@@ -1,11 +1,11 @@
-#include "../ResourceManager.hpp"
+#include "../Application.hpp"
 #include "../component/Neuron.hpp"
 #include "../component/Debug.hpp"
 
 
 int main(int argc, char **argv)
 {
-    ae::ResourceManager::EventHandler func;
+    ae::Application::EventHandler func;
     ae::Neuron::Callback func2;
     func = [](sf::Event& event)
     {
@@ -20,10 +20,10 @@ int main(int argc, char **argv)
         PRINT("Test Neuron %d Callback",id);
         return false;
     };
-    ae::ResourceManager::createEntity<ae::Debug>();
-    auto neuron = ae::ResourceManager::createEntity<ae::Neuron>();
+    ae::Application::createEntity<ae::Debug>();
+    auto neuron = ae::Application::createEntity<ae::Neuron>();
     neuron->setCallBack(func2);
-    ae::ResourceManager::addEventHandler(sf::Event::MouseButtonPressed,func);
-    ae::ResourceManager::run();
+    ae::Application::addEventHandler(sf::Event::MouseButtonPressed,func);
+    ae::Application::run();
     return 0;
 }

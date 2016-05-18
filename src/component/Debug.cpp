@@ -33,13 +33,13 @@ bool alfaNumeric(char c)
 ae::Debug::Debug()
 {
 
-	mText.setFont(ae::ResourceManager::getFont());
+	mText.setFont(ae::Application::getFont());
 	mText.setCharacterSize(14);
 	mText.setPosition(0,0);
 	mText.setColor(sf::Color::Red);
 	this->setPosition(50,400);
 	
-	ae::ResourceManager::addEventHandler(sf::Event::KeyPressed, [this](sf::Event& event)
+	ae::Application::addEventHandler(sf::Event::KeyPressed, [this](sf::Event& event)
 	{
 		if(event.key.code== sf::Keyboard::Return)
 		{

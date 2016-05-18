@@ -14,7 +14,7 @@ ae::Button::Button()
 {
     mId=id;
     id++;
-    mText.setFont(ae::ResourceManager::getFont());
+    mText.setFont(ae::Application::getFont());
     mText.setString("Button");
     mText.setCharacterSize(14);
     mText.setColor(sf::Color::Red);
@@ -31,7 +31,7 @@ ae::Button::Button()
     mRenderTexture.display();
     mSprite = new sf::Sprite(mRenderTexture.getTexture());
     mSprite->setPosition(150,150);
-    ae::ResourceManager::addEventHandler(sf::Event::MouseButtonPressed, [this](sf::Event& event)
+    ae::Application::addEventHandler(sf::Event::MouseButtonPressed, [this](sf::Event& event)
     {
         if (event.mouseButton.button == sf::Mouse::Left)
         {

@@ -1,7 +1,7 @@
 #ifndef DEBUG_HPP
 #define DEBUG_HPP
 
-#include "../ResourceManager.hpp"
+#include "../Application.hpp"
 #include "../Drawable.hpp"
 #include "../Types.hpp"
 
