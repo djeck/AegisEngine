@@ -23,6 +23,7 @@ int main(int argc, char **argv)
     ae::Application::createEntity<ae::Debug>();
     auto neuron = ae::Application::createEntity<ae::Neuron>();
     neuron->setCallBack(func2);
+    PRINT("Test %s correspond to %d",TYPE(neuron),HASH(neuron));
     ae::Application::addEventHandler(sf::Event::MouseButtonPressed,func);
     ae::Application::run();
     return 0;
