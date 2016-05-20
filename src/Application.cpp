@@ -5,10 +5,6 @@ ae::Application ae::Application::mInstance;
 ae::Application::Application()
 {
     mWindow = new sf::RenderWindow(sf::VideoMode(800, 600, 32), "AegiEngine", !sf::Style::Resize || sf::Style::Close );
-    if (!mFont.loadFromFile("./media/arial.ttf"))
-    {
-        PRINT("Error can't open font file");
-    }
     PRINT("Ok is running ");
 }
 ae::Application::~Application()
@@ -52,8 +48,4 @@ void ae::Application::run()
 void ae::Application::addEventHandler(sf::Event::EventType type,EventHandler arg0)
 {
     mInstance.mEvent.push_back(std::pair<sf::Event::EventType,EventHandler>(type,arg0));
-}
-sf::Font& ae::Application::getFont()
-{
-    return mInstance.mFont;
 }

@@ -33,7 +33,7 @@ bool alfaNumeric(char c)
 ae::Debug::Debug()
 {
 
-	mText.setFont(ae::Application::getFont());
+	mText.setFont(*ae::ResourceManager::get<sf::Font>("font"));
 	mText.setCharacterSize(14);
 	mText.setPosition(0,0);
 	mText.setColor(sf::Color::Red);

@@ -14,7 +14,7 @@ ae::Button::Button()
 {
     mId=id;
     id++;
-    mText.setFont(ae::Application::getFont());
+    mText.setFont(*ae::ResourceManager::get<sf::Font>("font"));
     mText.setString("Button");
     mText.setCharacterSize(14);
     mText.setColor(sf::Color::Red);

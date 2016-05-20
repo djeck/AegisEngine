@@ -1,5 +1,5 @@
-#ifndef RESOURCEMANAGER_HPP
-#define RESOURCEMANAGER_HPP
+#ifndef APPLICATION_HPP
+#define APPLICATION_HPP
 
 #include <iostream>
 #include <map>
@@ -27,10 +27,8 @@ public:
     static std::shared_ptr<T> createEntity(Args&& ... args);
     template <typename T>
     static std::shared_ptr<T> addEntity(std::shared_ptr<T> ptr);
-    static sf::Font& getFont();
 private:
     static Application mInstance;
-    sf::Font mFont;
 
     std::vector<std::pair<sf::Event::EventType,EventHandler>> mEvent;
 
@@ -71,4 +69,4 @@ std::shared_ptr<T> Application::addEntity(std::shared_ptr<T> ptr)
     return ptr;
 }
 }
-#endif // RESOURCEMANAGER_HPP
+#endif // APPLICATION_HPP

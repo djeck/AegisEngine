@@ -1,6 +1,7 @@
 #ifndef NEURON_HPP
 #define NEURON_HPP
 
+#include "../ResourceManager.hpp"
 #include "../Application.hpp"
 #include "../Drawable.hpp"
 #include "../Types.hpp"

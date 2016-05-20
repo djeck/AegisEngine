@@ -17,7 +17,7 @@ ae::Neuron::Neuron()
 	mId=id;
 	id++;
 	ss<<"Neuron "<<id<<"\n test";
-	mText.setFont(ae::Application::getFont());
+	mText.setFont(*ae::ResourceManager::get<sf::Font>("font"));
 	mText.setString(ss.str().c_str());
 	mText.setCharacterSize(14);
 	mText.setColor(sf::Color::Red);

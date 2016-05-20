@@ -1,6 +1,7 @@
 #ifndef BUTTON_HPP
 #define BUTTON_HPP
 
+#include "../ResourceManager.hpp"
 #include "../Application.hpp"
 #include "../Drawable.hpp"
 #include "../Types.hpp"
