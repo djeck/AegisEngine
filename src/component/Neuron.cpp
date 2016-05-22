@@ -11,7 +11,7 @@ bool ae::Neuron::collision(int xmouse, int ymouse)
 	(ymouse > mRect.getPosition().y && ymouse < mRect.getPosition().y + mRect.getSize().y);
 }
 
-ae::Neuron::Neuron()
+ae::Neuron::Neuron(const sf::Vector2f &pos)
 {
 	std::stringstream ss;
 	mId=id;
@@ -19,11 +19,12 @@ ae::Neuron::Neuron()
 	ss<<"Neuron "<<id<<"\n test";
 	mText.setFont(*ae::ResourceManager::get<sf::Font>("font"));
 	mText.setString(ss.str().c_str());
-	mText.setCharacterSize(14);
+	mText.setCharacterSize(11);
 	mText.setColor(sf::Color::Red);
+	mText.setPosition(pos);
 	mRect.setFillColor(sf::Color(100, 250, 50));
 	mRect.setSize(sf::Vector2f(50.f,50.f));
-	mRect.setPosition(50.f,50.f);
+	mRect.setPosition(pos);
 
 	ae::Application::addEventHandler(sf::Event::MouseButtonPressed, [this](sf::Event& event)
 	{
@@ -43,3 +44,9 @@ void ae::Neuron::setCallBack(Callback callback)
 {
 	mCallback = callback;
 }
+void ae::Neuron::setPosition(const sf::Vector2f& pos)
+{
+  mText.setPosition(pos);
+  mRect.setPosition(pos);
+}
+

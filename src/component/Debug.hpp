@@ -5,6 +5,7 @@
 #include "../Application.hpp"
 #include "../Drawable.hpp"
 #include "../Types.hpp"
+#include "Neuron.hpp"
 
 namespace ae
 {

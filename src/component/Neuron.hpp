@@ -15,7 +15,7 @@ namespace ae
 		
 		typedef std::function<void(const int&)> Callback;
 		bool collision(int xmouse,int ymouse);
-		Neuron();
+		Neuron(const sf::Vector2f& pos);
 		~Neuron();
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
 		{
@@ -24,6 +24,7 @@ namespace ae
 		  target.draw(mRect,states);
 		  target.draw(mText,states);
 		}
+		void setPosition(const sf::Vector2f& pos);
 		void setCallBack(Callback callback);
 	private:
 		sf::Text mText;

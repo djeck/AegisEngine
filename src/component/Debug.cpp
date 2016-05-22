@@ -45,6 +45,7 @@ ae::Debug::Debug()
 		{
 		  cmdHandler();
 		  mCmd.clear();
+		  mText.setString(mCmd.c_str());
 		}
 		else if(event.key.code== sf::Keyboard::BackSpace && mCmd.size()>0)
 		{
@@ -77,5 +78,7 @@ ae::Debug::~Debug()
 }
 void ae::Debug::cmdHandler()
 {
-
+  PRINT("Test %s",mCmd.c_str());
+  if(mCmd.compare("add neur")==0)
+    auto neuron = ae::Application::createEntity<ae::Neuron>(sf::Vector2f(0,0));
 }
