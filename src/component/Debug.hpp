@@ -5,7 +5,7 @@
 #include "../Application.hpp"
 #include "../Drawable.hpp"
 #include "../Types.hpp"
-#include "Neuron.hpp"
+#include "NeuronalNet.hpp"
 
 namespace ae
 {
@@ -23,8 +23,9 @@ namespace ae
 		}
 	private:
 	  void cmdHandler();
-		sf::Text mText;
-		std::string mCmd;
+	  sf::Text mText;
+	  std::string mCmd;
+	  std::shared_ptr<NeuronalNet> mNNet;
 	};
 }
 #endif // DEBUG_HPP

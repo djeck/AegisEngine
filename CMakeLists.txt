@@ -7,6 +7,7 @@ file(
         source_files
         src/*
         src/component/*
+        src/component/NeuronalNet.cpp
         src/test/
 )
 

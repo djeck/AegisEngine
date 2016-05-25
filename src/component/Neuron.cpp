@@ -11,9 +11,10 @@ bool ae::Neuron::collision(int xmouse, int ymouse)
 	(ymouse > mRect.getPosition().y && ymouse < mRect.getPosition().y + mRect.getSize().y);
 }
 
-ae::Neuron::Neuron(const sf::Vector2f &pos)
+ae::Neuron::Neuron(const sf::Vector2f &pos,ae::Neuron::Callback cb)
 {
 	std::stringstream ss;
+	callback=cb;
 	mId=id;
 	id++;
 	ss<<"Neuron "<<id<<"\n test";
@@ -25,28 +26,20 @@ ae::Neuron::Neuron(const sf::Vector2f &pos)
 	mRect.setFillColor(sf::Color(100, 250, 50));
 	mRect.setSize(sf::Vector2f(50.f,50.f));
 	mRect.setPosition(pos);
-
-	ae::Application::addEventHandler(sf::Event::MouseButtonPressed, [this](sf::Event& event)
-	{
-		if (event.mouseButton.button == sf::Mouse::Left)
-		{
-			if(collision(event.mouseButton.x,event.mouseButton.y) && mCallback)
-				mCallback(mId);
-		}
-		return false;
-	});
+	
+	PRINT("Ok neuron id %d constructor",mId);
 }
 ae::Neuron::~Neuron()
 {
 	PRINT("Ok free ressource ");
 }
-void ae::Neuron::setCallBack(Callback callback)
-{
-	mCallback = callback;
-}
 void ae::Neuron::setPosition(const sf::Vector2f& pos)
 {
   mText.setPosition(pos);
   mRect.setPosition(pos);
+}
+int ae::Neuron::getId()
+{
+  return mId;
 }
 

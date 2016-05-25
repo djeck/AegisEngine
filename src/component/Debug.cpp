@@ -34,6 +34,8 @@ ae::Debug::Debug()
 {
 
 	mText.setFont(*ae::ResourceManager::get<sf::Font>("font"));
+	mNNet = ae::Application::createEntity<NeuronalNet>();
+	mNNet->addNeuron();
 	mText.setCharacterSize(14);
 	mText.setPosition(0,0);
 	mText.setColor(sf::Color::Red);
@@ -80,5 +82,5 @@ void ae::Debug::cmdHandler()
 {
   PRINT("Test %s",mCmd.c_str());
   if(mCmd.compare("add neur")==0)
-    auto neuron = ae::Application::createEntity<ae::Neuron>(sf::Vector2f(0,0));
+    mNNet->addNeuron();
 }

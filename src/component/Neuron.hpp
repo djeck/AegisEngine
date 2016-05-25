@@ -12,24 +12,22 @@ namespace ae
 	{
 	public:
 		static const uint64_t type = "Neuron"_type;
-		
 		typedef std::function<void(const int&)> Callback;
+		Callback callback;
 		bool collision(int xmouse,int ymouse);
-		Neuron(const sf::Vector2f& pos);
+		Neuron(const sf::Vector2f& pos,Neuron::Callback cb);
 		~Neuron();
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
 		{
 		  states.transform *= getTransform();
-
 		  target.draw(mRect,states);
 		  target.draw(mText,states);
 		}
 		void setPosition(const sf::Vector2f& pos);
-		void setCallBack(Callback callback);
+		int getId();
 	private:
 		sf::Text mText;
 		sf::RectangleShape mRect;
-		Callback mCallback;
 		int mId;
 		static int id;
 	};
