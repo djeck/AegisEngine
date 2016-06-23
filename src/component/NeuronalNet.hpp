@@ -18,6 +18,7 @@ namespace ae
 	   target.draw(*((*it).second),states);
       }
       void addNeuron();
+      void rmNeuron(int id);
     private:
       int mouseColl(int mx,int my);
       std::map<int,std::shared_ptr<Neuron>> mNet;

@@ -42,6 +42,17 @@ void ae::NeuronalNet::addNeuron()
   PRINT("Ok neuron id: %d added to map",neuron->getId());
 }
 
+void ae::NeuronalNet::rmNeuron(int id)
+{
+  for(auto it = mNet.begin(); it != mNet.end();it++)
+    if((*it).second->getId()==id)
+    {
+      mNet.erase(it);
+      return;
+    }
+    PRINT("Error no neuron %d to delete",id);
+}
+
 ae::NeuronalNet::~NeuronalNet()
 {
 

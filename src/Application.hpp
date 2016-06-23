@@ -27,6 +27,7 @@ public:
     static std::shared_ptr<T> createEntity(Args&& ... args);
     template <typename T>
     static std::shared_ptr<T> addEntity(std::shared_ptr<T> ptr);
+    static void close();
 private:
     static Application mInstance;
 
@@ -34,6 +35,8 @@ private:
 
     std::vector<std::shared_ptr<Drawable>> mDrawables;
     std::vector<std::shared_ptr<ClockListener>> mClockListener;
+    
+    bool mClose;
 
     sf::RenderWindow* mWindow;
 };

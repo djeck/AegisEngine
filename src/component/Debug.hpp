@@ -19,11 +19,15 @@ namespace ae
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
 		{
 		    states.transform *= getTransform();
-		    target.draw(mText, states);
+		    target.draw(mInput, states);
 		}
+		void scanf(const char* arg1, int* id);
 	private:
 	  void cmdHandler();
-	  sf::Text mText;
+	  void printReturn(std::string str);
+	  sf::Text mInput;
+	  sf::Text mReturn;
+	  unsigned int mReturnMax; // max return lines
 	  std::string mCmd;
 	  std::shared_ptr<NeuronalNet> mNNet;
 	};

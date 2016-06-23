@@ -1,6 +1,8 @@
 #include "Debug.hpp"
 
 #include <sstream>
+#include <stdio.h>
+#include <stdlib.h>
 #include "../Log.hpp"
 
 void unicodeToAnsi(char* c)
@@ -33,12 +35,18 @@ bool alfaNumeric(char c)
 ae::Debug::Debug()
 {
 
-	mText.setFont(*ae::ResourceManager::get<sf::Font>("font"));
+	mInput.setFont(*ae::ResourceManager::get<sf::Font>("font"));
+	mReturn.setFont(*ae::ResourceManager::get<sf::Font>("font"));
+	mReturnMax=5;
+	
 	mNNet = ae::Application::createEntity<NeuronalNet>();
-	mNNet->addNeuron();
-	mText.setCharacterSize(14);
-	mText.setPosition(0,0);
-	mText.setColor(sf::Color::Red);
+	
+	mInput.setCharacterSize(14);
+	mReturn.setCharacterSize(14);
+	mInput.setPosition(30,400);
+	mReturn.setPosition(20,200);
+	mInput.setColor(sf::Color::Red);
+	mInput.setColor(sf::Color::Green);
 	this->setPosition(50,400);
 	
 	ae::Application::addEventHandler(sf::Event::KeyPressed, [this](sf::Event& event)
@@ -47,12 +55,12 @@ ae::Debug::Debug()
 		{
 		  cmdHandler();
 		  mCmd.clear();
-		  mText.setString(mCmd.c_str());
+		  mInput.setString(mCmd.c_str());
 		}
 		else if(event.key.code== sf::Keyboard::BackSpace && mCmd.size()>0)
 		{
 		  mCmd.pop_back();
-		  mText.setString(mCmd.c_str());
+		  mInput.setString(mCmd.c_str());
 		}
 		else if(event.key.code== sf::Keyboard::Tab)
 		{
@@ -60,7 +68,7 @@ ae::Debug::Debug()
 		else if(event.key.code== sf::Keyboard::Delete && mCmd.size()>0)
 		{
 		  mCmd.pop_back();
-		  mText.setString(mCmd.c_str());
+		  mInput.setString(mCmd.c_str());
 		}
 		else if (event.text.unicode < 128)
 		{
@@ -69,7 +77,7 @@ ae::Debug::Debug()
 			if(alfaNumeric(c))
 			{
 				mCmd.push_back(c);
-				mText.setString(mCmd.c_str());
+				mInput.setString(mCmd.c_str());
 			}
 		}
 		return false;
@@ -80,7 +88,15 @@ ae::Debug::~Debug()
 }
 void ae::Debug::cmdHandler()
 {
-  PRINT("Test %s",mCmd.c_str());
   if(mCmd.compare("add neur")==0)
     mNNet->addNeuron();
+  else if(mCmd.find("rm neur",0,7)==0)
+  {
+    PRINT("Test %s",mCmd.c_str());
+    int id;
+    PRINT("rm neur %d",&id);
+    mNNet->rmNeuron(id);
+  }
+  else if(mCmd.compare("exit")==0 ||mCmd.compare("quit")==0)
+    ae::Application::close();
 }
