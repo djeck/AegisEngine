@@ -21,6 +21,7 @@ public:
     }
 private:
     sf::Sprite mSprite;
+  
 }; 
 }
 

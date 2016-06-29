@@ -24,15 +24,14 @@ public:
 	target.draw(mText, states);
     }
     void setCallBack(Callback callback);
+    void setPosition(const sf::Vector2f &pos);
+    const sf::Vector2f& getPosition();
 private:
     sf::Text mText;
     sf::RectangleShape mShape;
     Callback mCallback;
     int mId;
     static int id;
-
-    sf::Sprite *mSprite;
-    sf::RenderTexture mRenderTexture;
 };
 }
 #endif // BUTTON_HPP

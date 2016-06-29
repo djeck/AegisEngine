@@ -4,7 +4,7 @@ ae::Application ae::Application::mInstance;
 
 ae::Application::Application()
 {
-    mWindow = new sf::RenderWindow(sf::VideoMode(800, 600, 32), "AegiEngine", !sf::Style::Resize || sf::Style::Close );
+    mWindow = new sf::RenderWindow(sf::VideoMode(WIN_W, WIN_H, 32), "AegiEngine", !sf::Style::Resize || sf::Style::Close );
     mClose=false;
     PRINT("Ok is running ");
 }
@@ -45,7 +45,9 @@ void ae::Application::run()
 	  mInstance.mClose=false;
 	  mInstance.mWindow->close();
 	}
-        
+        for(auto it = mInstance.mClock.begin(); it!=mInstance.mClock.end(); it++)
+                (*it)();
+
         mInstance.mWindow->clear();
         for(auto it = mInstance.mDrawables.begin(); it!=mInstance.mDrawables.end(); it++)
             mInstance.mWindow->draw(*(*it));
@@ -56,8 +58,26 @@ void ae::Application::addEventHandler(sf::Event::EventType type,EventHandler arg
 {
     mInstance.mEvent.push_back(std::pair<sf::Event::EventType,EventHandler>(type,arg0));
 }
+void ae::Application::addClockCallBack(ae::Application::ClockCallBack arg0)
+{
+    mInstance.mClock.push_back(arg0);
+}
 void ae::Application::close()
 {
   mInstance.mClose=true;
 }
+sf::RenderWindow* ae::Application::getWindow()
+{
+  return mInstance.mWindow;
+}
+void ae::Application::setView(const sf::View& view)
+{
+  mInstance.mWindow->setView(view);
+}
+const sf::View& ae::Application::getView()
+{
+  return mInstance.mWindow->getView();
+}
+
+
 

@@ -20,6 +20,8 @@ namespace ae
     
     template <typename T>
     static std::shared_ptr<T> get(const std::string& str);
+    template <typename T>
+    static bool exist(const std::string& str);
   private:
     static ResourceManager mInstance;
     std::vector<std::shared_ptr<ResourceHBase>> mResource;
@@ -58,6 +60,22 @@ namespace ae
     }
     PRINT("Error Resource \'%s\' can\'t be found",str.c_str());
     return nullptr;
+  }
+  
+  template <typename T>
+  bool ResourceManager::exist(const std::string& str)
+  {
+    for(auto it = mInstance.mResource.begin();it != mInstance.mResource.end();it++)
+    {
+      std::shared_ptr<ResourceHolder<T>> ptr = std::dynamic_pointer_cast<ResourceHolder<T>>((*it));
+      if(ptr)
+      {
+	std::shared_ptr< T > result = ptr->get(str);
+	if(result)
+	  return true;
+      }
+    }
+    return false;
   }
 }
 #endif

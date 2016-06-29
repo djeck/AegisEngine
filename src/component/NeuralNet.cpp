@@ -1,6 +1,6 @@
-#include "NeuronalNet.hpp"
+#include "NeuralNet.hpp"
 
-ae::NeuronalNet::NeuronalNet()
+ae::NeuralNet::NeuralNet()
 {
   mSelection=-1;
   ae::Application::EventHandler func;
@@ -20,11 +20,11 @@ ae::NeuronalNet::NeuronalNet()
 	  else if(ret>=0 && mNet.count(ret)==1)
 	    mSelection=ret;
 	}
-        return true;
+        return false;
     };
     ae::Application::addEventHandler(sf::Event::MouseButtonPressed,func);
 }
-void ae::NeuronalNet::addNeuron()
+void ae::NeuralNet::addNeuron()
 {
   ae::Neuron::Callback func2;
   func2 = [this](int id)
@@ -42,22 +42,24 @@ void ae::NeuronalNet::addNeuron()
   PRINT("Ok neuron id: %d added to map",neuron->getId());
 }
 
-void ae::NeuronalNet::rmNeuron(int id)
+void ae::NeuralNet::rmNeuron(int id)
 {
+  id--;
   for(auto it = mNet.begin(); it != mNet.end();it++)
     if((*it).second->getId()==id)
     {
       mNet.erase(it);
+      PRINT("Warning neuron %d removed",id);
       return;
     }
     PRINT("Error no neuron %d to delete",id);
 }
 
-ae::NeuronalNet::~NeuronalNet()
+ae::NeuralNet::~NeuralNet()
 {
 
 }
-int ae::NeuronalNet::mouseColl(int mx,int my)
+int ae::NeuralNet::mouseColl(int mx,int my)
 {
   for(auto it = mNet.begin(); it != mNet.end();it++)
     if((*it).second->collision(mx,my))

@@ -5,7 +5,8 @@
 #include "../Application.hpp"
 #include "../Drawable.hpp"
 #include "../Types.hpp"
-#include "NeuronalNet.hpp"
+#include "NeuralNet.hpp"
+#include "../Utils.hpp"
 
 namespace ae
 {
@@ -19,17 +20,19 @@ namespace ae
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
 		{
 		    states.transform *= getTransform();
+		    target.draw(mReturn, states);
 		    target.draw(mInput, states);
 		}
-		void scanf(const char* arg1, int* id);
 	private:
 	  void cmdHandler();
 	  void printReturn(std::string str);
+	  void scrollReturn(std::string str);
 	  sf::Text mInput;
 	  sf::Text mReturn;
 	  unsigned int mReturnMax; // max return lines
 	  std::string mCmd;
-	  std::shared_ptr<NeuronalNet> mNNet;
+	  std::string mOutput;
+	  std::shared_ptr<NeuralNet> mNNet;
 	};
 }
 #endif // DEBUG_HPP

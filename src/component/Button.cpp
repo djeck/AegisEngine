@@ -6,8 +6,8 @@ int ae::Button::id=0;
 
 bool ae::Button::collision(int xmouse, int ymouse)
 {
-    return (xmouse > mSprite->getPosition().x + mShape.getPosition().x && xmouse < mSprite->getPosition().x + mShape.getPosition().x + mShape.getSize().x) &&
-           (ymouse > mSprite->getPosition().y + mShape.getPosition().y && ymouse < mSprite->getPosition().y + mShape.getPosition().y + mShape.getSize().y);
+    return (xmouse > mShape.getPosition().x && xmouse < mShape.getPosition().x + mShape.getSize().x) &&
+           (ymouse > mShape.getPosition().y && ymouse < mShape.getPosition().y + mShape.getSize().y);
 }
 
 ae::Button::Button()
@@ -18,24 +18,17 @@ ae::Button::Button()
     mText.setString("Button");
     mText.setCharacterSize(14);
     mText.setColor(sf::Color::Red);
+    mText.setPosition(sf::Vector2f(50.f,50.f));
     mShape.setFillColor(sf::Color(100, 250, 50));
     mShape.setSize(sf::Vector2f(50.f,50.f));
     mShape.setPosition(50.f,50.f);
-    if (!mRenderTexture.create(500, 500))
-    {
-        PRINT("Error Can't create texture");
-    }
-    mRenderTexture.clear();
-    mRenderTexture.draw(mShape);
-    //mRenderTexture.draw(mText);
-    mRenderTexture.display();
-    mSprite = new sf::Sprite(mRenderTexture.getTexture());
-    mSprite->setPosition(150,150);
+    
     ae::Application::addEventHandler(sf::Event::MouseButtonPressed, [this](sf::Event& event)
     {
         if (event.mouseButton.button == sf::Mouse::Left)
         {
-            if(collision(event.mouseButton.x,event.mouseButton.y) && mCallback)
+	    sf::Vector2f worldPos = ae::Application::getWindow()->mapPixelToCoords(sf::Vector2i(event.mouseButton.x,event.mouseButton.y));
+            if(collision(worldPos.x,worldPos.y) && mCallback)
                 mCallback(mId);
         }
         return false;
@@ -43,11 +36,18 @@ ae::Button::Button()
 }
 ae::Button::~Button()
 {
-    delete mSprite;
-    PRINT("Ok free ressource ");
+    PRINT("Ok free Button ressource ");
 }
 void ae::Button::setCallBack(Callback callback)
 {
     mCallback = callback;
 }
-
+const sf::Vector2f& ae::Button::getPosition()
+{
+  return mShape.getPosition();
+}
+void ae::Button::setPosition(const sf::Vector2f& pos)
+{
+  mText.setPosition(pos);
+  mShape.setPosition(pos);
+}

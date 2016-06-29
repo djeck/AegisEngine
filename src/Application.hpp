@@ -1,6 +1,9 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
+#define WIN_W 1000
+#define WIN_H  600
+
 #include <iostream>
 #include <map>
 #include <functional>
@@ -16,22 +19,29 @@ class Application
 {
 public:
     typedef std::function<bool(sf::Event&)> EventHandler;
+    typedef std::function<void()> ClockCallBack;
     Application();
     ~Application();
 
     static void run();
 
     static void addEventHandler(sf::Event::EventType type,EventHandler arg0);
+    
+    static void addClockCallBack(ClockCallBack arg0);
 
     template <typename T, typename ... Args>
     static std::shared_ptr<T> createEntity(Args&& ... args);
     template <typename T>
     static std::shared_ptr<T> addEntity(std::shared_ptr<T> ptr);
     static void close();
+    static void setView(const sf::View& view);
+    static const sf::View& getView();
+    static sf::RenderWindow* getWindow();
 private:
     static Application mInstance;
 
     std::vector<std::pair<sf::Event::EventType,EventHandler>> mEvent;
+    std::vector<ClockCallBack> mClock;
 
     std::vector<std::shared_ptr<Drawable>> mDrawables;
     std::vector<std::shared_ptr<ClockListener>> mClockListener;

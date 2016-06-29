@@ -1,16 +1,16 @@
-#ifndef NEURONALNET_HPP
-#define NEURONALNET_HPP
+#ifndef NEURALNET_HPP
+#define NEURALNET_HPP
 
 #include "Neuron.hpp"
 
 namespace ae
 {
-    class NeuronalNet : public Drawable
+    class NeuralNet : public Drawable
     {
     public:
-      static const uint64_t type = "NeuronalNet"_type;
-      NeuronalNet();
-      ~NeuronalNet();
+      static const uint64_t type = "NeuralNet"_type;
+      NeuralNet();
+      ~NeuralNet();
       virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
       {
 	 states.transform *= getTransform();

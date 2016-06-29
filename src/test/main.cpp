@@ -1,5 +1,7 @@
-#include "../component/NeuronalNet.hpp"
+#include "../component/NeuralNet.hpp"
+#include "../component/Button.hpp"
 #include "../component/Debug.hpp"
+#include "../component/WorldMap.hpp"
 
 
 int main(int argc, char **argv)
@@ -11,7 +13,12 @@ int main(int argc, char **argv)
         PRINT("Error can't open font file");
     }
     
-    ae::Application::createEntity<ae::Debug>();
+    ae::Application::createEntity<ae::WorldMap>();
+    //ae::Application::createEntity<ae::Debug>();
+    ae::Application::createEntity<ae::Button>()->setCallBack([](const int& id)
+    {
+	PRINT("Test Button %d clicked",id);
+    });
   
     ae::Application::run();
     return 0;
